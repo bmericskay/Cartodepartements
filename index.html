@@ -58,10 +58,17 @@
 // Initialisation de la carte
 const map = new maplibregl.Map({
   container: 'map',
-  style: 'https://demotiles.maplibre.org/style.json',
-  center: [2.35, 46.85], // Paris
-  zoom: 5.3
+  style: 'https://data.geopf.fr/annexes/ressources/vectorTiles/styles/PLAN.IGN/attenue.json', // ou ton style
+  center: [2.2137, 47],
+  zoom: 5.3,
+  attributionControl: false // on désactive celle par défaut
 });
+
+// Ajout de l'attribution personnalisée
+map.addControl(new maplibregl.AttributionControl({
+  compact: true,
+  customAttribution: 'Données © IGN & OSM — Réalisation : Boris Mericskay'
+}));
 
 // Exemple de couche GeoJSON avec plusieurs polygones
 const polygons = {
@@ -257,5 +264,3 @@ map.on('load', () => {
   map.on('mouseleave', 'zones-fill', () => map.getCanvas().style.cursor = '');
 });
 </script>
-
-
